@@ -1,0 +1,24 @@
+name: main-worklfow
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  run-tests:
+    runs-on: stangirard/pre-commit-terraform:1.0.5-3
+    steps:
+      # Check out the pull request's source code.
+      - name: Check out source code
+        uses: actions/checkout@v2
+
+      - name: Run pre-commit scripts
+        run: pre-commit run -a
+  deploy:
+    steps:
+      - name: Terraform apply
+        run: terraform apply
