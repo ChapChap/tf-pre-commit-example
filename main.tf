@@ -1,6 +1,6 @@
 # main.tf
 terraform {
-  required_version = ">= 1.0.0, < 1.0.4"
+  required_version = "= 1.2.5"
 }
 
 resource "random_password" "password" {
