@@ -11,22 +11,22 @@ on:
 jobs:
   run-tests:
     runs-on: ubuntu-latest
-    container: stangirard/pre-commit-terraform:1.0.5-3
+    container: stangirard/pre-commit-terraform:1.2.5-latest
     steps:
       # Check out the pull request's source code.
       - name: Check out source code
         uses: actions/checkout@v2
 
       - name: Run pre-commit scripts
-        uses: docker://stangirard/pre-commit-terraform:1.0.5-3
+        uses: docker://stangirard/pre-commit-terraform:1.2.5-latest
         with:
           args: pre-commit run -a
   deploy:
     needs: run-tests
     runs-on: ubuntu-latest
-    container: stangirard/pre-commit-terraform:1.0.5-3
+    container: stangirard/pre-commit-terraform:1.2.5-latest
     steps:
       - name: Terraform apply
-        uses: docker://stangirard/pre-commit-terraform:1.0.5-3
+        uses: docker://stangirard/pre-commit-terraform:1.2.5-latest
         with:
           args: terraform apply
